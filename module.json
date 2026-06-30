@@ -3,50 +3,59 @@
   "title": "Narrative Portrait Spotlight",
   "description": "A module to display character portraits to all players in Foundry VTT.",
   "version": "1.4.0",
-  "library": false,
   "manifestPlusVersion": "1.2.0",
   "compatibility": {
     "minimum": "12",
-    "verified": "13",
-    "maximum": "13"
+    "verified": "14",
+    "maximum": "14"
   },
   "authors": [
     {
       "name": "Adunis - Butterdrinker",
-      "url": "https://github.com/adunis"  
-      }
+      "url": "https://github.com/adunis",
+      "flags": {}
+    }
   ],
   "relationships": {
-    "requires": [
-      {
-        "id": "sequencer",
-        "type": "module"
-      }
-    ]
+    "relationships": {
+      "requires": [
+        {
+          "id": "sequencer",
+          "type": "module",
+          "compatibility": {}
+        }
+      ]
+    }
   },
-  "scripts": [
-        "scripts/settings.js",
+  "esmodules": [
+    "scripts/settings.js",
     "scripts/narrative-portrait-spotlight.js"
   ],
   "packs": [
     {
       "name": "narrative-portrait-spotlight-macros",
       "label": "Narrative Portrait Spotlight Macros",
-      "path": "packs/narrative-portrait-spotlight-macros.db",
-      "type": "Macro"
+      "path": "packs/narrative-portrait-spotlight-macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
-  "styles": [],
-  "languages": [],
-  "url": "https://github.com/adunis/narrative-portrait-spotlight",
-  "manifest": "https://github.com/adunis/narrative-portrait-spotlight/releases/latest/download/module.json",
-  "download": "https://github.com/adunis/narrative-portrait-spotlight/releases/download/1.4.0/module.zip",
+  "url": "https://github.com/lozanoje/narrative-portrait-spotlight",
+  "manifest": "https://github.com/lozanoje/narrative-portrait-spotlight/releases/latest/download/module.json",
+  "download": "https://github.com/lozanoje/narrative-portrait-spotlight/releases/download/1.4.0/module.zip",
   "license": "LICENSE",
   "readme": "README.md",
   "media": [
     {
       "type": "icon",
-      "url": "media/icon.webp"  
-      }
-  ]
+      "url": "media/icon.webp",
+      "loop": false,
+      "flags": {}
+    }
+  ],
+  "flags": {}
 }

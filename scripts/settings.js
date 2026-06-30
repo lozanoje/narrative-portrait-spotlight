@@ -1,12 +1,15 @@
 
+// =====================================================================
+// NARRATIVE PORTRAIT SPOTLIGHT: CONFIGURACIÓN DE SETTINGS (PARTE 1)
+// =====================================================================
+
+const MODULE_NAME = "narrative-portrait-spotlight";
+
 Hooks.once('init', () => {
-    // Define the module namespace
+    console.log("🛡️ NARRATIVE SPOTLIGHT | Inicializando settings del módulo...");
 
-    console.log("Narrative Portrait Spotlight: Initializing settings...");
-
-    const MODULE_NAME = "narrative-portrait-spotlight";
-
-    game.settings.register("narrative-portrait-spotlight", "playerSize", {
+    // 1. Tamaño del retrato de los Jugadores
+    game.settings.register(MODULE_NAME, "playerSize", {
         name: "Player Portrait Size",
         hint: "Configure the maximum size for player character portraits as a percentage of screen size.",
         scope: "world",
@@ -20,7 +23,8 @@ Hooks.once('init', () => {
         }
     });
 
-    game.settings.register("narrative-portrait-spotlight", "npcSize", {
+    // 2. Tamaño del retrato de los NPCs (Tus personajes de Anima)
+    game.settings.register(MODULE_NAME, "npcSize", {
         name: "NPC Portrait Size",
         hint: "Configure the maximum size for NPC portraits as a percentage of screen size.",
         scope: "world",
@@ -34,14 +38,14 @@ Hooks.once('init', () => {
         }
     });
     
-
-    game.settings.register("narrative-portrait-spotlight", "backgroundOpacity", {
+    // 3. Opacidad del fondo de escena
+    game.settings.register(MODULE_NAME, "backgroundOpacity", {
         name: "Background Opacity",
         hint: "Set the opacity of the background image.",
         scope: "world",
         config: true,
         type: Number,
-        default: 0.5, // 50%
+        default: 0.5, 
         range: {
             min: 0,
             max: 1,
@@ -49,7 +53,7 @@ Hooks.once('init', () => {
         }
     });
 
-    // Register module settings
+    // 4. Altura máxima en porcentaje de pantalla
     game.settings.register(MODULE_NAME, "maxHeightPercent", {
         name: "Max Height Percentage",
         hint: "Maximum portrait height as a percentage of screen height (0 to 1).",
@@ -64,6 +68,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 5. Anchura máxima en porcentaje de pantalla
     game.settings.register(MODULE_NAME, "maxWidthPercent", {
         name: "Max Width Percentage",
         hint: "Maximum portrait width as a percentage of screen width (0 to 1).",
@@ -78,6 +83,7 @@ Hooks.once('init', () => {
         }
     });
 
+        // 6. Tiempo de desvanecimiento de las animaciones (Fade)
     game.settings.register(MODULE_NAME, "fadeTime", {
         name: "Fade Time",
         hint: "Duration of fade-in and fade-out animations in milliseconds.",
@@ -92,6 +98,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 7. Multiplicador de posición X base para Personajes Jugadores (PCs)
     game.settings.register(MODULE_NAME, "pcPosition", {
         name: "PC Base Position",
         hint: "Base X-position multiplier for player character (PC) portraits (0 to 1).",
@@ -106,6 +113,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 8. Multiplicador de posición X base para No Jugadores (NPCs)
     game.settings.register(MODULE_NAME, "npcPosition", {
         name: "NPC Base Position",
         hint: "Base X-position multiplier for non-player character (NPC) portraits (0 to 1).",
@@ -120,6 +128,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 9. Multiplicador de posición Y base para todos los retratos
     game.settings.register(MODULE_NAME, "verticalPosition", {
         name: "Vertical Position",
         hint: "Base Y-position multiplier for all portraits (0 to 1).",
@@ -134,6 +143,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 10. Distancia de separación horizontal para amontonar varios retratos a la vez
     game.settings.register(MODULE_NAME, "offsetStep", {
         name: "Offset Step",
         hint: "Offset multiplier for arranging multiple portraits horizontally.",
@@ -148,6 +158,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 11. Punto de anclaje X de PixiJS para posicionar el retrato
     game.settings.register(MODULE_NAME, "anchorPointX", {
         name: "Anchor Point X",
         hint: "Anchor point X for portrait positioning (0 to 1).",
@@ -162,6 +173,7 @@ Hooks.once('init', () => {
         }
     });
 
+    // 12. Punto de anclaje Y de PixiJS para posicionar el retrato
     game.settings.register(MODULE_NAME, "anchorPointY", {
         name: "Anchor Point Y",
         hint: "Anchor point Y for portrait positioning (0 to 1).",
@@ -176,6 +188,7 @@ Hooks.once('init', () => {
         }
     });
 
+     // 13. Renderizado por encima de la interfaz (UI)
     game.settings.register(MODULE_NAME, "screenSpaceAboveUI", {
         name: "Portrait Above UI",
         hint: "Determine whether portraits appear above the UI.",
@@ -185,6 +198,7 @@ Hooks.once('init', () => {
         default: false
     });
 
+    // 14. Prefijo técnico para nombrar los efectos visuales
     game.settings.register(MODULE_NAME, "effectNamePrefix", {
         name: "Effect Name Prefix",
         hint: "Prefix for naming portrait effects.",
@@ -194,6 +208,7 @@ Hooks.once('init', () => {
         default: "portrait"
     });
 
+    // 15. Nivel de verbosidad del Log de la consola
     game.settings.register(MODULE_NAME, "logLevel", {
         name: "Log Level",
         hint: "Control the verbosity of logging.",
@@ -209,7 +224,7 @@ Hooks.once('init', () => {
         default: "debug"
     });
 
-    // Custom Messages
+    // --- SECCIÓN: MENSAJES PERSONALIZADOS ---
     game.settings.register(MODULE_NAME, "noTokenSelectedMessage", {
         name: "No Token Selected Message",
         hint: "Message displayed when no token is selected.",
@@ -246,20 +261,24 @@ Hooks.once('init', () => {
         default: "Portrait displayed for {tokenName}"
     });
 
-    console.log("Narrative Portrait Spotlight: All settings registered successfully.");
+    console.log("🛡️ NARRATIVE SPOTLIGHT | Configuración de los 19 settings completada con éxito.");
+}); // <--- CIERRE FORMAL SEGURO DEL HOOK 'init'
 
-    // Register Handlebars helper outside of the init hook
+// 🛡️ PROTECCIÓN CRÍTICA V14: Registramos el helper 'eq' SOLO si Foundry no lo ha inicializado ya.
+// Esto evita que el motor de plantillas colapse por duplicación de variables globales.
+if (!Handlebars.helpers.eq) {
     Handlebars.registerHelper('eq', function(a, b) {
         return a === b;
     });
-});
+}
 
-
+/**
+ * 🖥️ FUNCIÓN DE APERTURA: EXTRAE LOS SETTINGS EN BASE AL ID DEL MUNDO ACTIVE
+ * Recupera de forma limpia el estado de las variables para alimentar el menú visual.
+ */
 async function showPortraitSpotlightConfig() {
-
-    const MODULE_NAME = "narrative-portrait-spotlight";
-    // Retrieve current settings
-    const settings = {
+    
+    const currentSettings = {
         maxHeightPercent: game.settings.get(MODULE_NAME, "maxHeightPercent"),
         maxWidthPercent: game.settings.get(MODULE_NAME, "maxWidthPercent"),
         fadeTime: game.settings.get(MODULE_NAME, "fadeTime"),
@@ -278,30 +297,39 @@ async function showPortraitSpotlightConfig() {
         displayingPortraitMessage: game.settings.get(MODULE_NAME, "displayingPortraitMessage")
     };
 
-    // Render the HTML template with current settings
-    const template = "modules/portrait-spotlight/templates/config.html";
-    const html = await renderTemplate(template, settings);
+    console.log("🛡️ NARRATIVE SPOTLIGHT | Settings cargados para renderizado de la interfaz:", currentSettings);
+    
 
-    // Create and display the dialog
+        // --- CONTINUACIÓN ASÍNCRONA DE LA FUNCIÓN showPortraitSpotlightConfig ---
+  
+    // CORRECCIÓN DE RUTA: Unificamos el ID de tu módulo legítimo ("narrative-portrait-spotlight")
+    const template = "modules/narrative-portrait-spotlight/templates/config.html";
+    const htmlContent = await renderTemplate(template, currentSettings);
+
+    // Creamos y desplegamos el diálogo nativo
     new Dialog({
         title: "Portrait Spotlight Configuration",
-        content: html,
+        content: htmlContent,
         buttons: {
             save: {
                 icon: '<i class="fas fa-check"></i>',
                 label: "Save",
                 callback: (html) => {
-                    // Extract form data
-                    const form = html[0].querySelector("form");
+                    // API MODERNA: El parámetro 'html' puede venir como JQuery o elemento nativo, lo unificamos
+                    const root = html instanceof HTMLElement ? html : html[0];
+                    const form = root.querySelector("form");
+                    if (!form) return;
+                    
                     const formData = new FormData(form);
 
-                    // Iterate through form data and update settings
+                    // Iteramos a través de los datos del formulario y actualizamos los settings
                     for (let [key, value] of formData.entries()) {
-                        // Handle checkboxes
+                        // Gestión de Checkboxes reactivos
                         if (key === "screenSpaceAboveUI") {
-                            value = form.querySelector(`input[name="${key}"]`).checked;
+                            const inputEl = form.querySelector(`input[name="${key}"]`);
+                            value = inputEl ? inputEl.checked : false;
                         }
-                        // Handle numerical inputs
+                        // Gestión de inputs numéricos flotantes
                         else if ([
                             "maxHeightPercent",
                             "maxWidthPercent",
@@ -316,11 +344,11 @@ async function showPortraitSpotlightConfig() {
                             value = parseFloat(value);
                         }
 
-                        // Update the setting
+                        // Guardamos el cambio real en la base de datos de la partida
                         game.settings.set(MODULE_NAME, key, value);
                     }
 
-                    ui.notifications.info("Portrait Spotlight settings saved.");
+                    ui.notifications.info("🛡️ NARRATIVE SPOTLIGHT | Configuraciones guardadas con éxito.");
                 }
             },
             cancel: {
@@ -333,25 +361,34 @@ async function showPortraitSpotlightConfig() {
     }).render(true);
 }
 
-// Optionally, register a settings menu to open the configuration dialog
-Hooks.once('ready', () => {
-    const MODULE_NAME = "portrait-spotlight";
+// =====================================================================
+// INTERCEPTOR DE INTERFAZ UNIFICADO PARA V13 Y V14 (LIBRE DE JQUERY)
+// =====================================================================
 
+class SpotlightConfigShim extends FormApplication {
+    constructor(...args) {
+        super(...args);
+        // Cerramos el frame del shim de inmediato y disparamos tu menú legítimo
+        showPortraitSpotlightConfig();
+    }
+    // Añadimos la función mínima obligatoria que exige el Core para no dar warnings
+    async _updateObject(event, formData) {}
+    render() { return this; }
+}
+
+
+
+Hooks.once('ready', () => {
+
+    // CORRECCIÓN: Cambiado 'type: Object' por 'SpotlightConfigShim' para cumplir con la V14
     game.settings.registerMenu(MODULE_NAME, "configMenu", {
         name: "Portrait Spotlight Configuration",
         label: "Configure Portrait Spotlight",
         hint: "Adjust settings for Portrait Spotlight.",
-        type: Object,
+        type: SpotlightConfigShim, // <-- ¡CABLEADA LA CLASE REGLAMENTARIA AQUÍ!
         restricted: false,
         config: false
     });
 
-    Hooks.on("renderSettingsConfig", (app, html, data) => {
-        if (app.object.object.name === MODULE_NAME) {
-            // You can inject a button or link to open the custom config dialog
-            const button = $(`<button class="configure-button">Open Portrait Spotlight Config</button>`);
-            button.on('click', () => showPortraitSpotlightConfig());
-            html.find('.settings-content').append(button);
-        }
-    });
 });
+
